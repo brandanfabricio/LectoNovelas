@@ -1,0 +1,32 @@
+<div>
+
+<div>
+    <form action="/novela" method="get">
+        <button type="submit">Agregar</button>
+    </form>
+</div>
+
+
+
+<div>
+
+
+    <div>
+        {{#each ListaNovelas }}
+        <div>
+            <h4>{{ titulo }}</h4>
+            <img src="{{imagen}}" alt="imgane de {{titulo}}">
+            <div>
+                <form action="/novela/{{_id}}/1" method="get">
+                    <button type="submit">Leer</button>
+                </form>
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
+
+</div>

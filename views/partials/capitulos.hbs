@@ -1,0 +1,16 @@
+<h1>Capitulos</h1>
+{{!-- {{page.actual}} --}}
+<ul>
+
+    {{#each ListaCapitulos }}
+    <li> 
+        <a href="/capitulo/leer/{{novela._id}}/{{actual}}#{{cap}}">
+
+            {{ titulo }}
+        </a>
+    </li>
+        
+    {{/each}}
+        {{!-- http://localhost:4000/capitulo/leer/638acb2897514f1ffa6cfcdd/1? --}}
+
+</ul>
