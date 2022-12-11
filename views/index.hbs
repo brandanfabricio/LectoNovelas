@@ -1,31 +1,36 @@
-<div>
+<div class="cabeza">
 
-<div>
-    <form action="/novela" method="get">
-        <button type="submit">Agregar</button>
-    </form>
+    <div class="cabeza-contenido">
+        <a href="/novela">
+            <h1>Agregar</h1>
+
+        </a>
+
+    </div>
+
+
 </div>
 
+<div class="contenido">
 
 
-<div>
-
-
-    <div>
+    <div class="Lisnovelas">
         {{#each ListaNovelas }}
-        <div>
-            <h4>{{ titulo }}</h4>
-            <img src="{{imagen}}" alt="imgane de {{titulo}}">
-            <div>
-                <form action="/novela/{{_id}}/1" method="get">
-                    <button type="submit">Leer</button>
-                </form>
-            </div>
 
+        {{#dataValues}}
+        <div class="novelas-container">
+            <div class="novela">
+                <h4>{{ titulo }}</h4>
+                <a href="/novela/{{id}}/1">
+                    <img src="{{imagen}}" alt="imgane de {{titulo}}" width="200" height="200">
+                </a>
+            </div>
         </div>
+        {{/dataValues}}
+
+
         {{/each}}
     </div>
-</div>
 
 
 

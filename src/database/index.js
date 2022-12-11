@@ -1,15 +1,30 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const ConecionMongo = async(uri)=>{
+// const ConecionMongo = async(uri)=>{
 
-    try {
-        await mongoose.connect(uri,{family: 4,})
-        console.log('db conectado')
+//     try {
+//         await mongoose.connect(uri,{family: 4,})
+//         console.log('db conectado')
 
-    } catch (error) {
-        console.log(error)
-    }
+//     } catch (error) {
+//         console.log(error)
+//     }
 
-}
+// }
 
-module.exports = ConecionMongo;
+// module.exports = ConecionMongo;
+
+const Sequelize = require('sequelize')
+
+const db = new Sequelize('misnovelas', 'root', 'root', {
+
+    port: '3007',
+    host: 'DB',
+    dialect: 'mysql'
+})
+
+db.sync({force:false})
+    .then(()=>{
+        console.log('Tabalas Sincronizada')
+    })
+module.exports = {db};

@@ -1,59 +1,102 @@
-<div>
+<div class="capitulo-contenedor">
 
-    <div>
+    {{#VerNovela.dataValues}}
 
-        <div>
-            <h1>{{ VerNovela.titulo }}</h1>
+    <div class="vista-novela">
+
+        <div class="contenedor-novela">
+
+
+            <h1>{{titulo}}</h1>
+
             <div>
-                <img src="{{VerNovela.imagen}}" alt="imgane de {{VerNovela.titulo}}">
+                <img src="{{imagen}}" alt="imgane de {{titulo}}">
 
             </div>
 
 
+
+        </div>
+
+
+
+
+        <div class="contenedor-link">
+
+            <div class="link-agregar">
+
+                <a href="/capitulo/{{id}}">Agregar capitulo</a>
+
+            </div>
+
+
+            <div class="link-vertodo">
+                <a href="/capitulo/leer/{{id}}/1">Ver Todo</a>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    {{/VerNovela.dataValues}}
+
+
+
+
+
+    <div class="contenedor-capitulos">
+
+
+        <div class="capitulos-pagina">
+
+            <p> Total de Paginas: <strong>{{page.totalPagina}}</strong> </p>
+
+            <h2>Capitulos</h2>
+
+            <p>Total de capitulos: <strong>{{page.totalCapitulos}}</strong> </p>
+
+
+
+
+
+        </div>
+
+
+
+        <div class="capitulos-lista">
+
+            {{>capitulos}}
+
+        </div>
+
+
+
+
+
+        <div class="capitulos-paginado">
+            <ul>
+
+
+                {{#each page.listadoDeCap}}
+
+                <li>
+
+                    <a href="/novela/{{cap}}/{{num}}"> {{num}} </a>
+                </li>
+                {{/each}}
+
+
+            </ul>
+{{!-- 
+            {{#each page.Cap }}
+            <p>{{this}}</p>
+            {{/each}} --}}
+
+
+            {{!-- {{page.listadoDeCap}} --}}
         </div>
 
     </div>
-</div>
 
-
-<div>
-    <form action="/capitulo/{{VerNovela._id}}" method="get">
-        <button type="submit">AgregarCapirulos</button>
-    </form>
-
-
-</div>
-
-<div>
-    <form action="/capitulo/leer/{{VerNovela._id}}/1" method="get">
-        <button type="submit">Leer Todo</button>
-    </form>
-</div>
-
-
-<div>
-
-    {{>capitulos}}
-</div>
-
-<p> Total de Paginas: {{page.totalPagina}}</p>
-<div>
-    <ul>
-
-
-        {{#each page.listadoDeCap}}
-
-        <li>
-        
-            <a href="/novela/{{cap}}/{{num}}"> {{num}} </a>
-        </li>
-        {{/each}}
-    </ul>
-
-    {{#each page.Cap }}
-    <p>{{this}}</p>
-    {{/each}}
-
-
-    {{!-- {{page.listadoDeCap}} --}}
 </div>

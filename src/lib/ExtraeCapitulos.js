@@ -13,11 +13,6 @@ async function ExtrarCitulo(linkNovela, novela) {
         return await dato
 
 
-
-
-
-
-
     } catch (error) {
         console.log(error)
     }
@@ -72,7 +67,7 @@ async function BuscarLinkDeNovela(url, id) {
                         cap,
                         titulo,
                         contenido: contenido.split('.').join('.<br><br>'),
-                        novela: id
+                        novelaId: id
                     };
                     arr.push(obj)
                     break;

@@ -1,23 +1,65 @@
-const { Schema, model } = require('mongoose');
+// const { Schema, model } = require('mongoose');
 
-const Capitulo = Schema({
+// const Capitulo = Schema({
+//     cap: {
+//         type: String
+//     },
+//     titulo: {
+//         type: String,
+//     },
+//     contenido: {
+//         type: String,
+//     },
+//     novela: {
+//         type: Schema.Types.ObjectId,
+//         ref: "novela"
+//     }
+// }, {
+//     timetamps: true,
+//     versionKey:false
+// })
+
+
+// module.exports = model('capitulo', Capitulo)
+const { DataTypes } = require('sequelize')
+const { db } = require('../database');
+const Novela = require('./novelas')
+
+const Capitulo = db.define('capitulo', {
+
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement:true,
+
+    },
+
     cap: {
-        type: String
+        type: DataTypes.STRING,
     },
     titulo: {
-        type: String,
+        type: DataTypes.STRING,
+        defaultValue: false,
     },
     contenido: {
-        type: String,
-    },
-    novela: {
-        type: Schema.Types.ObjectId,
-        ref: "novela"
+        type: DataTypes.TEXT,
+        defaultValue: false,
     }
 }, {
-    timetamps: true,
-    versionKey:false
+    timestamps: false
 })
 
 
-module.exports = model('capitulo', Capitulo)
+Novela.hasMany(Capitulo, {
+    foreinkey: "NovelaId",
+    sourceKey: "id",
+});
+
+Capitulo.belongsTo(Novela,
+    {
+        foreinkey: "NovelaId",
+        targetId: "id"
+    });
+
+
+module.exports = Capitulo;

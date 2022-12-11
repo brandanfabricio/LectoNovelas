@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  DB:
+    container_name: database
+    image: mysql
+    restart: unless-stopped
+    # networks:
+    #    sql:
+    #     ipv4_address: 172.16.238.2
+    ports:
+      - "3007:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: misnovelas
+    logging:
+      driver: none
+    volumes:
+      - C:\Users\fabri\OneDrive\Escritorio\db\schemas:/var/lib/mysql:rw
+  Novelas:
+    # networks:
+    #    sql:
+    #     ipv4_address: 172.16.238.3
+    depends_on:
+      - DB
+    links:
+      - DB:DB
+    restart: always
+    container_name: Novelas
+    image: novelas
+    build: .
+    ports:
+      - "4000:4000"
+    stdin_open: true
+    tty: true
+
+volumes:
+  schemas: {}
+
+# networks:
+#   sql:
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: 172.16.238.0/24

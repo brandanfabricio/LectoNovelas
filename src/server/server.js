@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { PORT, MONGO } = require('../config')
 const router = require('../routes/index.routes')
-const ConecionDB = require('../database')
+// const ConecionDB = require('../database')
 const path = require('path');
 const { create } = require('express-handlebars');
 
@@ -45,7 +45,8 @@ class Servidor {
 
     }
     async ConectarDB() {
-        await ConecionDB(this.MONGO)
+        // await ConecionDB(this.MONGO)
+         require('../database')
     }
     Start() {
 

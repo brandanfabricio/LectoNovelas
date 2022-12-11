@@ -1,9 +1,9 @@
 
 const { Router } = require('express');
-const { HolaMundo, AgregarNovela, TodasLasNovela,formAgregar,MostraNovela } = require('./novela.controllers')
+const { AgregarNovela, TodasLasNovela,formAgregar,MostraNovela } = require('./novela.controllers')
 const router = Router();
 
-// router.get('/', HolaMundo)
+
 
 router.get('/', TodasLasNovela)
 router.get('/novela', formAgregar)

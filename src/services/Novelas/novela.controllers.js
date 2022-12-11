@@ -4,9 +4,7 @@ const Capitulos = require('../../models/capitulos');
 
 class Novelas {
 
-    async HolaMundo(req, res) {
-        return res.render('index', { ms: 'putoo' })
-    }
+
 
     async AgregarNovela(req, res) {
 
@@ -30,7 +28,10 @@ class Novelas {
     }
 
     async TodasLasNovela(req, res) {
-        const ListaNovelas = await Novela.find().lean();
+        const ListaNovelas = await Novela.findAll({
+            attributes: ["id", "titulo", "imagen"],
+        }) //find().lean();
+
         return res.render('index', { ListaNovelas })
     }
 
@@ -38,33 +39,36 @@ class Novelas {
         return res.render('agregarNovela')
     }
 
-
-
     async MostraNovela(req, res) {
         const { id } = req.params
         const desde = Number(req.params.desde) || 1;
-
+        console.log('Desde ', desde)
 
         let limite = 10;
         let actual = 0;
 
-        const [VerNovela, ListaCapitulos, total] = await Promise.all([
-            Novela.findById(id).lean(),
-            Capitulos.find({ novela: id })
-                .populate('novela', 'novela')
-                .skip((desde * limite) - limite)
-                .limit(limite).lean(),
-            Capitulos.countDocuments({ novela: id }).lean()
+        const [VerNovela, { count, rows }] = await Promise.all([
+            Novela.findByPk(id),
+            //  Capitulos.findAll({ where: { NovelaId: id } }),
+            // .populate('novela', 'novela')
+            //  .skip((desde * limite) - limite)
+            // .limit(limite),//.lean(),
+            // Capitulos.count({ where: { NovelaId: id } })
+
+            Capitulos.findAndCountAll({
+                where: { NovelaId: id },
+                offset: (desde * limite) - limite,
+                limit: limite
+
+            })
+
         ])
-
-
-        let listadoDeCap = []
-
-
-
+        const total = count;
         let totalPagina = Math.ceil(total / limite);
 
-        // console.log("total" ,totalPagina)
+        const ListaCapitulos = rows
+        let listadoDeCap = []
+
         for (let i = 1; i <= totalPagina; i++) {
 
             let Capitu = {
@@ -77,11 +81,13 @@ class Novelas {
 
 
 
-        // ListaCapitulos   
-        ListaCapitulos.map(e=>{
-            e.actual = desde
+
+        ListaCapitulos.map((e,i)=> {
+            e.dataValues.actual = desde
+            e.dataValues.pagina = i+1 + (desde*10) - 10
         })
 
+//  console.log(ListaCapitulos)
 
 
         return res.render('VerNovela', {
@@ -93,24 +99,10 @@ class Novelas {
                 pagina: desde + 1,
                 limite,
                 totalPagina,
-                listadoDeCap
+                listadoDeCap,
+                totalCapitulos: total
             }
         })
-
-        /**
-                let limite = 10;
-                let actual = 0;
-                const [capitulos, total] = await Promise.all([
-                    Capitulos.find({}).skip((desde * limite) - limite).limit(limite).lean()
-                    ,
-                    Capitulos.countDocuments().lean()
-                ])
-        
-                return res.render('LeerCapitulos', {
-                    capitulos,
-                   
-                })
-         */
 
     }
 

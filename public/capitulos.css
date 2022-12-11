@@ -1,7 +1,159 @@
-.container { padding-top:50px; font-size: 1.5rem; background-color: #373A3C; color: #F8F9FA;  padding-left: 10px; } 
-body{
- background-color: #5f6468 ;  
+.capitulo-contenedor {
+
+   color: #F8F9FA;
+
 }
-.titulo{
-    font-size: 2rem;
+
+
+/* clases de la imagen y titulo */
+
+.vista-novela {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contenedor-novela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+.contenedor-novela h1 {
+    margin-bottom: 8px;
+}
+
+.contenedor-novela div {
+    margin-bottom: 8px;
+}
+
+.contenedor-novela img {
+    border-radius: 8px;
+    width: 80%;
+    height: 450px;
+}
+
+
+
+
+
+
+/* clases de link */
+
+
+.link-agregar {
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #656666;
+
+
+}
+
+/*    #F8F9FA */
+.link-vertodo {
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #656666;
+
+
+}
+
+
+.contenedor-link {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+}
+
+/* clases capitilos listado de pagina */
+
+.contenedor-capitulos {
+    
+}
+
+.capitulos-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    padding: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: #424242;
+
+}
+
+.capitulos-pagina h2 {
+    border-bottom: 2px double rgb(138, 100, 177);
+}
+
+
+
+
+
+
+.capitulos-lista {
+    background-color: #424242;
+
+}
+
+.lista-cap {
+
+    width: 100%;
+}
+
+.lista-cap ul {
+    display: grid;
+
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    grid-template-columns: 50% 50%;
+    list-style: none;
+    text-align: center;
+}
+
+.lista-cap li {
+    text-transform: capitalize;
+    margin-bottom: 8px;
+}
+
+
+
+
+
+
+
+
+
+.capitulos-paginado {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #424242;
+
+}
+
+.capitulos-paginado ul {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.capitulos-paginado li {
+    color: red;
+    list-style-type: none;
 }
