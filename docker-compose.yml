@@ -17,7 +17,7 @@ services:
     logging:
       driver: none
     volumes:
-      - C:\Users\fabri\OneDrive\Escritorio\db\schemas:/var/lib/mysql:rw
+      - ./schemas:/var/lib/mysql:rw
   Novelas:
     networks:
       sql:
