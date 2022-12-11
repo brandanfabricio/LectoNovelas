@@ -4,10 +4,11 @@ services:
   DB:
     container_name: database
     image: mysql
-    restart: unless-stopped
-    # networks:
-    #    sql:
-    #     ipv4_address: 172.16.238.2
+    restart: on-failure
+    networks:
+      sql:
+        aliases:
+          - Mysql
     ports:
       - "3007:3306"
     environment:
@@ -18,13 +19,12 @@ services:
     volumes:
       - C:\Users\fabri\OneDrive\Escritorio\db\schemas:/var/lib/mysql:rw
   Novelas:
-    # networks:
-    #    sql:
-    #     ipv4_address: 172.16.238.3
+    networks:
+      sql:
+        aliases:
+          - Apk
     depends_on:
       - DB
-    links:
-      - DB:DB
     restart: always
     container_name: Novelas
     image: novelas
@@ -33,13 +33,15 @@ services:
       - "4000:4000"
     stdin_open: true
     tty: true
-
+    entrypoint: ["./wait-for-it.sh","Mysql:3007","--","npm","run","dev"]
+    # command:  ["npm","run","dev"]
+   
 volumes:
   schemas: {}
 
-# networks:
-#   sql:
-#     driver: bridge
-#     ipam:
-#       config:
-#         - subnet: 172.16.238.0/24
+networks:
+  sql:
+    name: Novelas
+    driver: bridge
+    ipam:
+      driver: default

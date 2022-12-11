@@ -18,10 +18,13 @@ const Sequelize = require('sequelize')
 
 const db = new Sequelize('misnovelas', 'root', 'root', {
 
-    port: '3007',
-    host: 'DB',
+    port: '3306',
+    host: 'Mysql',
     dialect: 'mysql'
 })
+
+
+
 
 db.sync({force:false})
     .then(()=>{

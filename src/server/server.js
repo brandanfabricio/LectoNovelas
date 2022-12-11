@@ -46,12 +46,13 @@ class Servidor {
     }
     async ConectarDB() {
         // await ConecionDB(this.MONGO)
-         require('../database')
+            require('../database')
+
     }
     Start() {
 
         this.app.listen(this.PORT, () => {
-            console.log('Servidor andando en el puerto', this.PORT)
+            console.log('Servidor andando en el puerto ', this.PORT)
         })
     }
 }
