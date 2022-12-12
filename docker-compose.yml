@@ -33,7 +33,7 @@ services:
       - "4000:4000"
     stdin_open: true
     tty: true
-    entrypoint: ["./wait-for-it.sh","Mysql:3007","--","npm","run","dev"]
+    entrypoint: ["./wait-for-it.sh","Mysql:3306","--","npm","run","dev"]
     # command:  ["npm","run","dev"]
    
 volumes:

@@ -84,7 +84,7 @@ class Novelas {
 
         ListaCapitulos.map((e,i)=> {
             e.dataValues.actual = desde
-            e.dataValues.pagina = i+1 + (desde*10) - 10
+            e.dataValues.pagina = i+1 + (desde*limite) -limite
         })
 
 //  console.log(ListaCapitulos)

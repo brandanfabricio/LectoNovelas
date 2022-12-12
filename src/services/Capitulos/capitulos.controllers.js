@@ -53,7 +53,6 @@ class Novelas {
     async LeerTodoLosCapitulo(req, res) {
 
         const { id } = req.params
-
         const desde = Number(req.params.desde) || 1;
         let limite = 1;
         let actual = 0;

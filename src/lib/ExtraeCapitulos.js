@@ -54,7 +54,6 @@ async function BuscarLinkDeNovela(url, id) {
 
             let contenido;
             let obj;
-
             for (let c = 0; c <= clases.length - 1; c++) {
 
 
@@ -84,9 +83,11 @@ async function BuscarLinkDeNovela(url, id) {
                         contenido = '';
                         contenido = await prs(`.${claseEncontrada[0].trim()}`).text().replaceAll('Leer en tunovelaligera.com', '.')
                         obj = {
-                            cap: `${titulo}`,
+                            cap,
                             titulo,
-                            contenido: contenido.split('.').join('.<br><br>')
+                            contenido: contenido.split('.').join('.<br><br>'),
+                            novelaId: id
+
                         };
                         arr.push(obj)
                         break;;
