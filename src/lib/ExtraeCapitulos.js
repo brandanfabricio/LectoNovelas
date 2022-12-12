@@ -75,8 +75,21 @@ async function BuscarLinkDeNovela(url, id) {
                 } else {
 
                     if (c == clases.length - 1) {
-                        console.log("***EL CAPITULO ", linksCapitulos[i], " NO CONTIENE UNA CLASE REGISTRADA***|")
-                        break;
+                        let claseEntry = /entry-content_wrap_s_*\d{4,8}/igm
+                        let BuscarClase = await prs('div').html();
+
+                        let claseEncontrada = BuscarClase.match(claseEntry);
+
+                        // console.log(claseEncontrada[0])
+                        contenido = '';
+                        contenido = await prs(`.${claseEncontrada[0].trim()}`).text().replaceAll('Leer en tunovelaligera.com', '.')
+                        obj = {
+                            cap: `${titulo}`,
+                            titulo,
+                            contenido: contenido.split('.').join('.<br><br>')
+                        };
+                        arr.push(obj)
+                        break;;
                     }
                 }
 
