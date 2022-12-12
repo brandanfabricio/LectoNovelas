@@ -22,7 +22,7 @@ class Novelas {
         const url = new URL(body.url)
         let cantidadPagina = url.searchParams.get('lcp_page0')
 
-        for (let i = cantidadPagina; i >= 6; i--) {
+        for (let i = cantidadPagina; i >= 1; i--) {
 
             url.searchParams.set('lcp_page0', i)
             console.log("################### Capitulos de la Pagina", url.href, " ##########################")
