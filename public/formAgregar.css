@@ -49,6 +49,8 @@
 padding: 8px;
 margin: 10px;
 width: 265px;
+color: #444444;
+
 }
 .frmInput label {
     display: block; /* Ahora los inputs quedan debajo de los label */
