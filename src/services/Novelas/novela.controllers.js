@@ -44,7 +44,7 @@ class Novelas {
         const desde = Number(req.params.desde) || 1;
         console.log('Desde ', desde)
 
-        let limite = 10;
+        let limite = 50;
         let actual = 0;
 
         const [VerNovela, { count, rows }] = await Promise.all([

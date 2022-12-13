@@ -73,7 +73,6 @@
 
 
 
-
         <div class="capitulos-paginado">
             <ul>
 
@@ -81,14 +80,12 @@
                 {{#each page.listadoDeCap}}
 
                 <li>
-
-                    <a href="/novela/{{cap}}/{{num}}"> {{num}} </a>
-                </li>
+                    <a  class="num{{num}}" href="/novela/{{cap}}/{{num}}">{{ num}}</li>
                 {{/each}}
 
 
             </ul>
-{{!-- 
+            {{!--
             {{#each page.Cap }}
             <p>{{this}}</p>
             {{/each}} --}}
@@ -100,3 +97,11 @@
     </div>
 
 </div>
+
+<script>
+    let n = {{page.actual}}
+    let paginado = document.querySelector(`.num${n}`)
+    paginado.className = 'paginaAcual'
+
+    console.log(paginado)
+</script>
