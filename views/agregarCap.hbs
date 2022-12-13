@@ -1,14 +1,17 @@
 <div class="form-agregar">
 
+        {{#each novela}}
+        {{#dataValues}}
+        <h1>Agregar Capitulo a la novela</h1>
+        <h2> {{titulo}}</h2>
 
-        <h1>agregar cap</h1>
+         <img src="{{imagen}}" alt="">
 
-        <p> El id de la novela es {{id}}</p>
-
-
+        {{/dataValues}}
+        {{/each}}
         <form action="/capitulo/agregar/{{id}}" method="post">
 
-                <input type="url" name="url" id="" placeholder="Agregar Url de capitulos">
+                <input type="url" name="url" id="" placeholder="Agregar Url de capitulos"><br>
                 <button type="submit">Agregar</button>
 
         </form>

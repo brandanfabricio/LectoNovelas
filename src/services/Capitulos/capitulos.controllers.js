@@ -1,5 +1,6 @@
 
 const Capitulos = require('../../models/capitulos');
+const Novela = require('../../models/novelas');
 const ExtrarCitulo = require('../../lib/ExtraeCapitulos')
 
 class Novelas {
@@ -8,10 +9,17 @@ class Novelas {
 
     async VerFormulario(req, res) {
         const { id } = req.params;
-
-        return res.render('agregarCap', { id })
+        const novela = await Novela.findAll({
+            where: {
+                id: id
+            }
+        })
+        console.log(novela)
+        return res.render('agregarCap', { id, novela })
 
     }
+
+
 
 
     async AgregarCapitulo(req, res) {
