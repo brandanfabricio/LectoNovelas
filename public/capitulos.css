@@ -84,7 +84,7 @@
 
 .capitulos-pagina {
     display: flex;
-        
+        justify-content: space-between;
     align-items: center;
     text-align: center;
     margin-top: 5px;
