@@ -1,0 +1,70 @@
+.contenedor-form-agregar {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #F8F9FA;
+    
+}
+
+
+.formDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+.formDesc img {
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 6px;
+}
+
+
+
+
+
+.frmAgregar {
+    margin-top: 2px;
+    height: 100%;
+}
+
+.frm {
+    box-sizing: border-box;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 300px;
+    background-color: #444444;
+
+}
+
+.frmInput {
+}
+
+.frmInput input{
+padding: 8px;
+margin: 10px;
+width: 265px;
+}
+.frmInput label {
+    display: block; /* Ahora los inputs quedan debajo de los label */
+    padding: 5px; /* Separando espacios internos */
+    text-align: center;
+}
+
+
+
+.frmBtn {
+    display: flex;
+    justify-content: center;
+
+}
+.frmBtn button{
+    margin: 5px;
+    padding: 5px;
+    width: 150px;
+}

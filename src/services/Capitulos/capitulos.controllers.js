@@ -14,7 +14,6 @@ class Novelas {
                 id: id
             }
         })
-        console.log(novela)
         return res.render('agregarCap', { id, novela })
 
     }

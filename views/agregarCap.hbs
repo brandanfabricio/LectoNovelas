@@ -1,19 +1,33 @@
-<div class="form-agregar">
+<div class="contenedor-form-agregar">
+        <div class="formDesc">
 
-        {{#each novela}}
-        {{#dataValues}}
-        <h1>Agregar Capitulo a la novela</h1>
-        <h2> {{titulo}}</h2>
+                {{#each novela}}
+                {{#dataValues}}
+                <h1>Agregar Capitulo a la Novela</h1>
+                <h2> {{titulo}}</h2>
 
-         <img src="{{imagen}}" alt="">
+                <img src="{{imagen}}" alt="">
 
-        {{/dataValues}}
-        {{/each}}
-        <form action="/capitulo/agregar/{{id}}" method="post">
+                {{/dataValues}}
+                {{/each}}
 
-                <input type="url" name="url" id="" placeholder="Agregar Url de capitulos"><br>
-                <button type="submit">Agregar</button>
 
-        </form>
+        </div>
+
+        <div class="frmAgregar">
+
+                <form  class="frm" action="/capitulo/agregar/{{id}}" method="post">
+                        <div class="frmInput">
+                                <label for="">Agregar Url</label>
+                                <input type="url" name="url" id="" placeholder="Agregar Url de capitulos">
+                        </div>
+                        <div class="frmBtn">
+
+                                <button type="submit">Agregar</button>
+                        </div>
+
+                </form>
+
+        </div>
 
 </div>
