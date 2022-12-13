@@ -19,7 +19,7 @@ const Sequelize = require('sequelize')
 const db = new Sequelize('misnovelas', 'root', 'root', {
 
     port: '3007',
-    host: '192.168.1.23',
+    host: 'Mysql',
     dialect: 'mysql'
 })
 
