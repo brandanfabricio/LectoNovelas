@@ -49,6 +49,8 @@ class Novelas {
         let actual = 0;
 
         const [VerNovela, { count, rows }, pagina] = await Promise.all([
+
+
             Novela.findByPk(id),
             //  Capitulos.findAll({ where: { NovelaId: id } }),
             // .populate('novela', 'novela')
@@ -62,7 +64,8 @@ class Novelas {
                 limit: limite
 
             }),
-            Pagina.findAll({ where: { novelaId: id } })
+            Pagina.findAll({ where: { novelaId: id } }),
+            
 
         ])
         const total = count;
@@ -81,10 +84,15 @@ class Novelas {
             listadoDeCap.push(Capitu)
         }
 
-        let recordatorio = pagina[0].dataValues.pagina;
 
 
-            VerNovela.dataValues.recordatorio = recordatorio
+
+
+      let recordatorio = pagina.length > 0 ?  pagina[0].dataValues.pagina : 1;
+
+      console.log(recordatorio)
+
+        VerNovela.dataValues.recordatorio = recordatorio
 
 
         ListaCapitulos.map((e, i) => {
@@ -98,8 +106,8 @@ class Novelas {
         return res.render('VerNovela', {
             VerNovela,
             ListaCapitulos,
-            
-        
+
+
             page: {
                 actual: desde,
                 pagina: desde + 1,
