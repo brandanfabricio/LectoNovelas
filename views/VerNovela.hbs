@@ -1,4 +1,9 @@
+{{!-- {{this}}
+{{/ultimaPagina}} --}}
+
 <div class="capitulo-contenedor">
+
+
 
     {{#VerNovela.dataValues}}
 
@@ -19,21 +24,18 @@
         </div>
 
 
-
-
         <div class="contenedor-link">
-
             <div class="link-agregar">
-
                 <a href="/capitulo/{{id}}">Agregar capitulo</a>
-
+            </div>
+            <div class="link-agregar">
+                <a href="/capitulo/leer/{{id}}/{{{recordatorio}}}">Continuar</a>
             </div>
 
 
             <div class="link-vertodo">
                 <a href="/capitulo/leer/{{id}}/1">Ver Todo</a>
             </div>
-
         </div>
 
 
@@ -80,7 +82,8 @@
                 {{#each page.listadoDeCap}}
 
                 <li>
-                    <a  class="num{{num}}" href="/novela/{{cap}}/{{num}}">{{ num}}</li>
+                    <a class="num{{num}}" href="/novela/{{cap}}/{{num}}">{{ num}}
+                </li>
                 {{/each}}
 
 
@@ -99,7 +102,7 @@
 </div>
 
 <script>
-    let n = {{page.actual}}
+    let n = {{ page.actual }}
     let paginado = document.querySelector(`.num${n}`)
     paginado.className = 'paginaAcual'
 

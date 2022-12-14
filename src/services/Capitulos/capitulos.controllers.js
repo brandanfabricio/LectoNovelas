@@ -1,5 +1,5 @@
-
 const Capitulos = require('../../models/capitulos');
+const Pagina = require('../../models/pagina');
 const Novela = require('../../models/novelas');
 const ExtrarCitulo = require('../../lib/ExtraeCapitulos')
 
@@ -91,6 +91,59 @@ class Novelas {
         })
 
     }
+
+
+
+    async UltimaPagina(req, res) {
+        const { id, desde } = req.params
+
+        const guardarPagina = {
+            pagina: desde -1 ,
+            novelaId: id
+        }
+
+        const dato = await Pagina.findAll({
+            where: {
+                novelaId: id
+            }
+        })
+
+        const Guardar = async (pagina) => {
+            const ultimaPagina = new Pagina(pagina);
+            await ultimaPagina.save();
+        }
+
+
+        if (dato.length <= 0) {
+            console.log("####### Guardando ultimo capitulo visto #####")
+
+            await Guardar(guardarPagina);
+
+            return await res.redirect(`/novela/${id}/1`)
+
+
+        }
+
+        console.log("#### actualizar ultimo capitulo ### ")
+
+
+        await Promise.all([
+            Pagina.destroy({
+                where: {
+                    novelaId: id
+                }
+            }),
+            await Guardar(guardarPagina)
+        ])
+
+
+        return await res.redirect(`/novela/${id}/1`)
+        // return await res.redirect(`/capitulo/leer/${id}/${desde}`)
+
+
+
+    }
+
 
 }
 

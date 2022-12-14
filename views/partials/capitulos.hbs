@@ -1,22 +1,16 @@
 {{!-- {{page.actual}} --}}
 
 <div class="lista-cap">
-
-
-<ul>
-
-    {{#each ListaCapitulos }}
-    {{#dataValues}}
-    <li> 
-        <a href="/capitulo/leer/{{novelaId}}/{{pagina}}">
-
-            {{ cap }}
-        </a>
-    </li>
+    <ul>
+        {{#each ListaCapitulos }}
+        {{#dataValues}}
+        <li>
+            <a href="/capitulo/leer/{{novelaId}}/{{pagina}}">
+                {{ cap }}
+            </a>
+        </li>
         {{/dataValues}}
-    {{/each}}
+        {{/each}}
         {{!-- http://localhost:4000/capitulo/leer/638acb2897514f1ffa6cfcdd/1? --}}
-
-</ul>
-
+    </ul>
 </div>

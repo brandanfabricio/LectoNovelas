@@ -30,7 +30,16 @@ padding: 20px;
 }
 
 
+.link-recordar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #656666;
+    height: 60px;
+    margin-bottom: 5px;
+    font-size: large;
 
+}
 
 
 

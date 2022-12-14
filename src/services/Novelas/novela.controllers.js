@@ -1,5 +1,6 @@
 const Novela = require('../../models/novelas');
 const Capitulos = require('../../models/capitulos');
+const Pagina = require('../../models/pagina');
 
 
 class Novelas {
@@ -47,7 +48,7 @@ class Novelas {
         let limite = 50;
         let actual = 0;
 
-        const [VerNovela, { count, rows }] = await Promise.all([
+        const [VerNovela, { count, rows }, pagina] = await Promise.all([
             Novela.findByPk(id),
             //  Capitulos.findAll({ where: { NovelaId: id } }),
             // .populate('novela', 'novela')
@@ -60,7 +61,8 @@ class Novelas {
                 offset: (desde * limite) - limite,
                 limit: limite
 
-            })
+            }),
+            Pagina.findAll({ where: { novelaId: id } })
 
         ])
         const total = count;
@@ -79,21 +81,25 @@ class Novelas {
             listadoDeCap.push(Capitu)
         }
 
+        let recordatorio = pagina[0].dataValues.pagina;
 
 
+            VerNovela.dataValues.recordatorio = recordatorio
 
-        ListaCapitulos.map((e,i)=> {
+
+        ListaCapitulos.map((e, i) => {
             e.dataValues.actual = desde
-            e.dataValues.pagina = i+1 + (desde*limite) -limite
+            e.dataValues.pagina = i + 1 + (desde * limite) - limite
         })
 
-//  console.log(ListaCapitulos)
+        //  console.log(ListaCapitulos)
 
-
+        console.log()
         return res.render('VerNovela', {
             VerNovela,
             ListaCapitulos,
-
+            
+        
             page: {
                 actual: desde,
                 pagina: desde + 1,

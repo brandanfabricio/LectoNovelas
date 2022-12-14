@@ -90,7 +90,7 @@ async function BuscarLinkDeNovela(url, id) {
 
                         };
                         arr.push(obj)
-                        break;;
+                        break;
                     }
                 }
 
