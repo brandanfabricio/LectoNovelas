@@ -98,7 +98,7 @@ class Novelas {
         const { id, desde } = req.params
 
         const guardarPagina = {
-            pagina: desde -1 ,
+            pagina: desde - 1,
             novelaId: id
         }
 
@@ -127,18 +127,15 @@ class Novelas {
         console.log("#### actualizar ultimo capitulo ### ")
 
 
-        await Promise.all([
-            Pagina.destroy({
-                where: {
-                    novelaId: id
-                }
-            }),
-            await Guardar(guardarPagina)
-        ])
+        await Pagina.update({ pagina: desde - 1 }, {
+            where: {
+                novelaId: id
+            }
+        });
+
 
 
         return await res.redirect(`/novela/${id}/1`)
-        // return await res.redirect(`/capitulo/leer/${id}/${desde}`)
 
 
 
