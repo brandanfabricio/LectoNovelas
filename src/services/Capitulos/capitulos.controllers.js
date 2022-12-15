@@ -98,7 +98,7 @@ class Novelas {
         const { id, desde } = req.params
 
         const guardarPagina = {
-            pagina: desde - 1,
+            pagina: desde,
             novelaId: id
         }
 
@@ -127,7 +127,7 @@ class Novelas {
         console.log("#### actualizar ultimo capitulo ### ")
 
 
-        await Pagina.update({ pagina: desde - 1 }, {
+        await Pagina.update({ pagina: desde}, {
             where: {
                 novelaId: id
             }
