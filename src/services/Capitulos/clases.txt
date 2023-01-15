@@ -10,3 +10,5 @@ entry-content_wrap_s_368810
 entry-content_wrap_s_664726
 entry-content_wrap_s_664841
 entry-content_wrap_s_664658
+paragraph
+td-post-content
