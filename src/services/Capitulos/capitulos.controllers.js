@@ -51,19 +51,16 @@ class Novelas {
         return await res.redirect(`/novela/${id}/1?`)
 
 
-
-
-
     }
 
 
     async LeerTodoLosCapitulo(req, res) {
 
-        const { id } = req.params
-        const desde = Number(req.params.desde) || 1;
-        let limite = 1;
-        let actual = 0;
+        const { id, limitee } = req.params
 
+        const desde = Number(req.params.desde) || 1;
+        let limite = Number(limitee);
+        
 
 
         const { count, rows } = await Capitulos.findAndCountAll({
@@ -127,7 +124,7 @@ class Novelas {
         console.log("#### actualizar ultimo capitulo ### ")
 
 
-        await Pagina.update({ pagina: desde}, {
+        await Pagina.update({ pagina: desde }, {
             where: {
                 novelaId: id
             }

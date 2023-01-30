@@ -44,7 +44,12 @@ const Capitulo = db.define('capitulo', {
     contenido: {
         type: DataTypes.TEXT,
         defaultValue: false,
+    },
+    Ncap:{
+        type:DataTypes.INTEGER,
+        defaultValue:false
     }
+    
 }, {
     timestamps: false
 })

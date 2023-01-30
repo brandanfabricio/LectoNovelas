@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 const fs = require('fs')
 const path = require('path');
-
+const { Filtro } = require('../helper');
 
 async function ExtrarCitulo(linkNovela, novela) {
 
@@ -51,17 +51,33 @@ async function BuscarLinkDeNovela(url, id) {
                     .replaceAll('--', '-').replaceAll('---', '-')
             ])
             // let titulo = await prs('title').text().replaceAll('-','').replaceAll(' ','-').replaceAll('.','').replaceAll('--','-')
+            let exp = /[0-9]{1,5}/
 
+            let Np= cap.match(exp);
+            
             let contenido;
             let obj;
+            
             for (let c = 0; c <= clases.length - 1; c++) {
 
 
+                
 
                 if (await prs(`.${clases[c].trim()}`).hasClass(clases[c].trim())) {
-
                     contenido = '';
-                    contenido = await prs(`.${clases[c].trim()}`).text().replaceAll('Leer en tunovelaligera.com', '.')
+                    contenido = await prs(`.${clases[c].trim()}`).text()
+                        .replaceAll('Leer en tunovelaligera.com', '.')
+                        .replaceAll(`Guardar CapituloReportar CapituloPlease complete the required fields.`, '')
+                        .replaceAll(`Ayuda a Tunovelaligera a reportar los capitulos mal.`, '')
+                        .replaceAll(`Your NameEmailReason (required)Reportar Capitulo en InglesReportar`, '')
+                        .replaceAll(`Capitulo de otra novelaReportar Capitulo vacioReportar Capitulo incompletoReportar`, '')
+                        .replaceAll(`Capituilo RepetidoDescriptionEnviarVisitar`, '')
+                        .replaceAll(`com Si no te muestra siguiente pagina, tienes que volver activar javascript.`, '')
+                        .replaceAll(`tunovelaligera.`, '')
+                        .replaceAll(`Si no te muestra siguiente pagina,`, '')
+                        .replaceAll(`tienes que volver activar javascript.`, '')
+
+
                     obj = {
                         cap,
                         titulo,
@@ -79,13 +95,26 @@ async function BuscarLinkDeNovela(url, id) {
 
                         let claseEncontrada = BuscarClase.match(claseEntry);
 
-                        // console.log(claseEncontrada[0])
                         contenido = '';
-                        contenido = await prs(`.${claseEncontrada[0].trim()}`).text().replaceAll('Leer en tunovelaligera.com', '.')
+                        contenido = await prs(`.${claseEncontrada[0].trim()}`)
+                            .text()
+                            .replaceAll('Leer en tunovelaligera.com', '.')
+                            .replaceAll(`Guardar CapituloReportar CapituloPlease complete the required fields.`, '')
+                            .replaceAll(`Ayuda a Tunovelaligera a reportar los capitulos mal.`, '')
+                            .replaceAll(`Your NameEmailReason (required)Reportar Capitulo en InglesReportar`, '')
+                            .replaceAll(`Capitulo de otra novelaReportar Capitulo vacioReportar Capitulo incompletoReportar`, '')
+                            .replaceAll(`Capituilo RepetidoDescriptionEnviarVisitar`, '')
+                            .replaceAll(`com Si no te muestra siguiente pagina, tienes que volver activar javascript.`, '')
+                            .replaceAll(`tunovelaligera.`, '')
+                            .replaceAll(`Si no te muestra siguiente pagina,`, '')
+                            .replaceAll(`tienes que volver activar javascript.`, '')
+
+
                         obj = {
                             cap,
                             titulo,
                             contenido: contenido.split('.').join('.<br><br>'),
+                            Ncap:Np[0],
                             novelaId: id
 
                         };

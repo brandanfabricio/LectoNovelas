@@ -6,7 +6,7 @@ const router = Router();
 router.get('/:id',VerFormulario )
 router.post('/agregar/:id',AgregarCapitulo )
 
-router.get('/leer/:id/:desde',LeerTodoLosCapitulo)
+router.get('/leer/:id/:desde/:limitee',LeerTodoLosCapitulo)
 
 router.get('/leer/ultimo/:id/:desde',UltimaPagina)
 

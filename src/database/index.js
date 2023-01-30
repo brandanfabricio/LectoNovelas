@@ -1,3 +1,4 @@
+const {DB,HOST,PASS,PORT_DB,USR} = require('../config');
 // const mongoose = require('mongoose');
 
 // const ConecionMongo = async(uri)=>{
@@ -16,10 +17,10 @@
 
 const Sequelize = require('sequelize')
 
-const db = new Sequelize('misnovelas', 'root', 'root', {
+const db = new Sequelize(DB, USR, PASS, {
 
-    port: '3007',
-    host: '192.168.1.13',
+    port: PORT_DB,
+    host: HOST,
     dialect: 'mysql'
 })
 
