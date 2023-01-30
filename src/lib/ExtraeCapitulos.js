@@ -82,7 +82,9 @@ async function BuscarLinkDeNovela(url, id) {
                         cap,
                         titulo,
                         contenido: contenido.split('.').join('.<br><br>'),
-                        novelaId: id
+                        novelaId: id,
+                        Ncap:Np[0],
+
                     };
                     arr.push(obj)
                     break;
