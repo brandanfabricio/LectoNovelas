@@ -44,6 +44,9 @@ async function BuscarLinkDeNovela(url, id) {
             let texto = await datos.text()
             let prs = await cheerio.load(texto)
 
+
+
+
             let [titulo, cap] = await Promise.all([
                 prs('title').text(),
                 prs('title').text().replaceAll('-', '')
@@ -53,15 +56,15 @@ async function BuscarLinkDeNovela(url, id) {
             // let titulo = await prs('title').text().replaceAll('-','').replaceAll(' ','-').replaceAll('.','').replaceAll('--','-')
             let exp = /[0-9]{1,5}/
 
-            let Np= cap.match(exp);
-            
+            let Np = cap.match(exp);
+
             let contenido;
             let obj;
-            
+
+
+
+
             for (let c = 0; c <= clases.length - 1; c++) {
-
-
-                
 
                 if (await prs(`.${clases[c].trim()}`).hasClass(clases[c].trim())) {
                     contenido = '';
@@ -82,8 +85,8 @@ async function BuscarLinkDeNovela(url, id) {
                         cap,
                         titulo,
                         contenido: contenido.split('.').join('.<br><br>'),
-                        novelaId: id,
-                        Ncap:Np[0],
+                        Ncap: Np ? Np[0] : 0000,
+                        novelaId: id
 
                     };
                     arr.push(obj)
@@ -116,7 +119,7 @@ async function BuscarLinkDeNovela(url, id) {
                             cap,
                             titulo,
                             contenido: contenido.split('.').join('.<br><br>'),
-                            Ncap:Np[0],
+                            Ncap: Np ? Np[0] : 0000,
                             novelaId: id
 
                         };
@@ -127,6 +130,7 @@ async function BuscarLinkDeNovela(url, id) {
 
 
             }
+
 
         }
 
